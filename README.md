@@ -1,7 +1,7 @@
 # Assignments
 Some of assignment questions done using c++
 
-You can find individual description of each program [here](Descriptions)
+You can find individual description of each program [here](https://github.com/akhil-suresh31/Assignments/blob/main/README.md#descriptions-)
 
 ### List of programs :
 1. Random no. generator : https://onlinegdb.com/S1o72SIgd
