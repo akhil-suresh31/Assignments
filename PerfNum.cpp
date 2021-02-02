@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
     do{
     cout<<"Enter the value of n(n>0):";
     cin>>n;
-    }while(n>0);
+    }while(n<0);
     cout<<"perfect no. between 1-n are:";
     perfno(n);
     return 0;
