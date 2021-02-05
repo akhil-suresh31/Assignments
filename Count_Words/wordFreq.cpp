@@ -5,35 +5,20 @@
 */
 #include<iostream>
 #include<map>
-#include<fstream>
-#include<string>
+#include"WordFreq.hpp"
 using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    map<string,int> words;
-
-    ifstream fs;
+    map<string,int> words = getWords();
     string word;
-    fs.open("para.txt",ifstream::in);
-    while(fs>>word)
-    {   
-        
-        if(words.count(word)==1)
-            words[word]++;
-        else
-        {
-            words[word]=1;
-        }
-    }
-
-    fs.close();
-
-    cout<<"words : count\n";
-    for( pair<string,int> i : words)
-    {   
-        cout<<i.first<<":"<<i.second<<endl;
-    }
-
+    cout<<"enter the word to search for:";
+    cin>>word;
+    int count= getWordCount(words,word);
+    if(count==0)
+        cout<<"No such word exist in the text file";
+    else
+        cout<<word<<" occured "<<count<<" times";
+   
     return 0;
 }
