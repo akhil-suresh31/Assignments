@@ -11,72 +11,8 @@
 
 #include<iostream>
 #include<map>
+#include"BookMgmtMap.hpp"
 using namespace std;
-
-struct Book
-{
-    int b_id;
-    string b_name;
-    string b_author;
-    float b_price;
-};
-
-void insertBook(map<int,struct Book> &Books ,struct Book b)
-{
-   if(Books.count(b.b_id)>0)
-   {
-       cout<<"Book already exists with same id";
-       return;
-   }
-   Books[b.b_id]=b;
-}
-
-void removeBook(map<int,struct Book> &Books ,int id)
-{
-   if(Books.count(id)==0)
-   {
-       cout<<"no such book exists";
-       return;
-   }
-    cout<<"removed book :"<<Books[id].b_name;
-    Books.erase(id);
-}
-
-void search(map<int,struct Book> &Books,int id)
-{
-    if(Books.count(id))
-    {
-        cout<<"----------------------------------\n";
-        cout<<"Book id:"<<Books[id].b_id;
-        cout<<"\nBook name :"<<Books[id].b_name;
-        cout<<"\nBook author:"<<Books[id].b_author;
-        cout<<"\nBook price :"<<Books[id].b_price;
-        cout<<"\n-----------------------------------\n";
-    }
-    else
-    {
-        cout<<"No such book exists";
-    }
-    
-}
-
-void showAll(map<int,struct Book> &Books)
-{
-    if(Books.empty())
-    {
-        cout<<"No Books to show";
-        return;
-    }
-    for(pair<int,struct Book> i : Books)
-    {
-        cout<<"----------------------------------\n";
-        cout<<"Book id:"<<i.second.b_id;
-        cout<<"\nBook name :"<<i.second.b_name;
-        cout<<"\nBook author:"<<i.second.b_author;
-        cout<<"\nBook price :"<<i.second.b_price;
-        cout<<"\n-----------------------------------\n";
-    }
-}
 
 int main(int argc, char const *argv[])
 {
@@ -99,7 +35,8 @@ int main(int argc, char const *argv[])
                 cin>>b.b_author;
                 cout<<"Enter price:";
                 cin>>b.b_price;
-                insertBook(Books,b);
+                if(insertBook(Books,b))
+                    cout<<"Book inserted successfully";                  
                 break;
         case 2: int id;
                 cout<<"Enter book id to delete:";
@@ -110,7 +47,15 @@ int main(int argc, char const *argv[])
                 break;
         case 4: cout<<"Enter book id to search:";
                 cin>>id;
-                search(Books,id);
+                if(search(Books,id))
+                {
+                    cout<<"----------------------------------\n";
+                    cout<<"Book id:"<<Books[id].b_id;
+                    cout<<"\nBook name :"<<Books[id].b_name;
+                    cout<<"\nBook author:"<<Books[id].b_author;
+                    cout<<"\nBook price :"<<Books[id].b_price;
+                    cout<<"\n-----------------------------------\n";
+                }
                 break;
         case 5:break;
         default:
